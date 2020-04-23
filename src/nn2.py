@@ -1,3 +1,5 @@
+# Modified from an example at https://dev.to/shamdasani/build-a-flexible-neural-network-with-backpropagation-in-python
+
 import numpy as np
 
 debug = True
@@ -24,14 +26,14 @@ class Neural_Network(object):
     self.outputSize = 1
     self.hiddenSize = 3
 
-    #weights
+    # weights
     self.W1 = np.random.randn(self.inputSize, self.hiddenSize) # (3x2) weight matrix from input to hidden layer
     log('Neural_Network.W1: %s' % (self.W1.tolist()))
     self.W2 = np.random.randn(self.hiddenSize, self.outputSize) # (3x1) weight matrix from hidden to output layer
     print('Neural_Network.W2: %s' % (self.W2.tolist()))
 
   def forward(self, X):
-    #forward propagation through our network
+    # forward propagation through our network
     self.z = np.dot(X, self.W1) # dot product of X (input) and first set of 3x2 weights
     self.z2 = self.sigmoid(self.z) # activation function
     self.z3 = np.dot(self.z2, self.W2) # dot product of hidden layer (z2) and second set of 3x1 weights
@@ -45,7 +47,7 @@ class Neural_Network(object):
 
   # slope function
   def sigmoidPrime(self, s):
-    #derivative of sigmoid
+    # derivative of sigmoid
     return s * (1 - s)
 
   def backward(self, X, y, o):
